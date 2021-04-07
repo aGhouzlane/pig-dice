@@ -12,6 +12,49 @@
 </head>
 
 <body>
+  <div class="container">
+    <div style="text-align: center; margin-top: 100px;">
+      <input class="btn btn-success" id="start" value="Start Game">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="game">
+          <div style="border: solid; border-radius: 10px; text-align: center;">
+            <div style="padding: 10px;">
+              <h3 style="padding:10px;">Ahmed (Player 1)</h3>
+              <input class="btn btn-primary" id="player1" value="Roll">
+              <input class="btn btn-primary" id="hold1" value="Hold">
+              <div style="padding: 10px;">
+                <p id="score1"></p>
+                <p id="dice1"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="game">
+          <div style="border: solid; border-radius: 10px; text-align: center;">
+            <div style="padding: 10px;">
+              <h3 style="padding:10px;">Tiffany (Player 2)</h3>
+              <input class="btn btn-primary" id="player2" value="Roll">
+              <input class="btn btn-primary" id="hold2" value="Hold">
+              <div style="padding: 10px;">
+                <p id="score2"></p>
+                <p id="dice2"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="output" style="text-align: center;">
+      <p id="text" style="border-radius: 10px; border: solid; padding: 30px;"></p>
+      <input class="btn btn-success" id="playAgain" value="Play again">
+    </div>
+  </div>
+
   <script src="js/jquery-3.6.0.js"></script>
   <script src="js/scripts.js"></script>
 </body>
