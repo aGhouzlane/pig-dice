@@ -1,17 +1,17 @@
-function Player(score) {
+function Player(score, totalScore) {
   this.score = score;
+  this.totalScore = totalScore;
 }
 
 var roll = Math.floor(Math.random() * 6) + 1;
 
 Player.prototype.incrementPlayerScore = function () {
   roll = Math.floor(Math.random() * 6) + 1;
-  // if (roll === 1) {
-  //   this.score = 0;
-  // } else {
-  //   this.score += roll;
-  // }
-  this.score += roll;
+  if (roll === 1) {
+    this.score = 0;
+  } else {
+    this.score += roll;
+  }
   return this.score;
 }
 
@@ -40,18 +40,18 @@ $(document).ready(function () {
     $("#player1").show();
     $("#hold2").show();
     $("#player2").show();
-
   });
 
-  const player1 = new Player(0);
-  const player2 = new Player(0);
+  const player1 = new Player(0, 0);
+  const player2 = new Player(0, 0);
+
   let player1Score = 0;
 
   $("#player1").click(function () {
     player1Score = player1.incrementPlayerScore();
 
-    if (isWinner(player1Score)) {
-      $("#text").append("Player 1 is the winner");
+    if (isWinner(totalScore1)) {
+      $("#text").text("Player 1 is the winner");
       $(".game").hide()
       $("#output").show();
     }
@@ -60,18 +60,30 @@ $(document).ready(function () {
     $("#dice1").text("Dice: " + roll);
   });
 
+  let totalScore1 = 0;
+  let totalScore2 = 0;
+
   $("#hold1").click(function () {
     $("#hold1").hide();
     $("#player1").hide();
     $("#hold2").show();
     $("#player2").show();
+
+    totalScore1 += player1.score + player1.totalScore;
+    console.log("total 1: " + totalScore1);
+    player1Score = 0;
+    player1.score = 0;
+
+    $("#score1").text("Score: " + player1Score);
   });
 
-  $("#player2").click(function () {
-    const player2Score = player2.incrementPlayerScore();
+  let player2Score = 0;
 
-    if (isWinner(player2Score)) {
-      $("#text").append("Player 2 is the winner");
+  $("#player2").click(function () {
+    player2Score = player2.incrementPlayerScore();
+
+    if (isWinner(totalScore2)) {
+      $("#text").text("Player 2 is the winner");
       $(".game").hide()
       $("#output").show();
     }
@@ -80,11 +92,18 @@ $(document).ready(function () {
     $("#dice2").text("Dice: " + roll);
   });
 
-
   $("#hold2").click(function () {
     $("#hold2").hide();
     $("#player2").hide();
     $("#hold1").show();
     $("#player1").show();
+
+    totalScore2 += player2.score + player2.totalScore;
+    console.log("total 2: " + totalScore2);
+
+    player2Score = 0;
+    player2.score = 0;
+
+    $("#score2").text("Score: " + player2Score);
   })
 });
